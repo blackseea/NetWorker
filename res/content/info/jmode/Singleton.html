@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>单例模式</title>
+    <style>
+        pre code {
+            font-size: medium;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>单例</h1>
+    <p>
+        对于其他样式的静态方法来说，要么只满足单线程安全方面，要么只满足效率方面，要么一个都满足不了。
+        <p>例如：
+            <br><pre><code>
+                如果静态对象在类加载时就被初始化，且后续没有使用到该对象，则会造成内存浪费。
+                static Object obj = new Object();
+                public static Object func(){
+                    return obj;
+                }
+                为了充分利用内存，在代码中加入了空对象判断代码。如下，
+
+                1.单线程安全，多线程不安全。
+                public static Object func(){
+                    if(obj == null){
+                        obj =new Object();
+                    }
+                    return obj;
+                }
+                
+                2.线程安全，效率低。
+                public static synchronized Object func(){
+                    if (obj == null){
+                       obj =new Object();
+                    }
+                    return obj;
+                }
+
+                和2无实质性区别。
+                public static Object func(){
+                    synchronized (Class.class){
+                        if(obj == null){
+                            obj =new Object();
+                        }
+                    }
+                    return obj;
+                }
+
+                除此之外，还有静态内部类创建，枚举类创建。两种方式都是线程安全，至于效率高不高，不知道。
+                class Outer{
+                    static Inner{
+                        Outer outer =new Outer();
+
+                        public static Outer func(){
+                            return outer;
+                        }
+                    }
+                }
+
+                enum Outer {
+                    OUTER;
+
+                    public void test(){
+                        System.out.println();
+                    }
+                }
+            </code></pre>
+        </p>
+        为了防止效率低和保障安全，用以下样式的代码来实现。
+        <h2>双重检查</h2>
+        <p>
+            <pre><code>
+                public static Object func(){
+                    if (obj == null){
+                        synchronized (Class.class){
+                            if(obj == null){
+                                obj =new Object();
+                            }
+                        }
+                    }
+                    return obj;
+                }
+            </code></pre>
+        </p>
+        <h2></h2>
+        <p></p>
+    </p>
+</body>
+
+</html>

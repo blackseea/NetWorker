@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>适配器模式</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    <h1>适配器模式</h1>
+    <p>
+        本质上就是功能的复用。但是复用的功能并不能直接拿来使用，必须对该功能做出一些修改。当该功能在其他地方被使用的时候，直接对该功能进行修改就行不通。
+        <br>因此，需要一个中间者充当桥梁，承担修改该功能的责任。这个中间者可以是接口。
+        <pre>
+            <code>
+                //类适配器模式
+                public class A{
+                    /**
+                     * 当前方法实现的功能无法直接在B类中使用。因为该功能产生的最后结果不是我们所需要的。
+                     */
+                    public void m1(){
+                        //...
+                    }
+                }
+
+                public interface I{
+                    /**
+                     * 声明一个方法，修改m1()的结果，将结果改变为我们所需要的结果。
+                     */
+                    public void mi();
+                }
+
+                public class Adapter extends A implements I{
+                    /**
+                     * 写上相应的逻辑代码
+                     */
+                    public void mi(){
+                        //...
+                    }
+                }
+
+                public class B{
+                    public void call(I i){
+                        i.mi();
+                    }
+                }
+
+                public static void main(){
+                    B b= new B();
+                    b.call(new Adapter());
+                }
+            </code>
+        </pre> 对象适配器实际上就是将类适配器中的继承关系改为聚合关系。父类变为子类中的全局变量。
+        <pre>
+            <code>
+                //对象适配器
+                public class A{
+                    /**
+                     * 当前方法实现的功能无法直接在B类中使用。因为该功能产生的最后结果不是我们所需要的。
+                     */
+                    public void m1(){
+                        //...
+                    }
+                }
+
+                public interface I{
+                    /**
+                     * 声明一个方法，修改m1()的结果，将结果改变为我们所需要的结果。
+                     */
+                    public void mi();
+                }
+
+                public class Adapter implements I{
+                    /**
+                     * 通过构造器传入实例或者Setter方法传入实例。
+                     */
+                    A a;
+                    /**
+                     * 写上相应的逻辑代码
+                     */
+                    public void mi(){
+                        //...
+                    }
+                }
+
+                public class B{
+                    public void call(I i){
+                        i.mi();
+                    }
+                }
+
+                public static 
+            </code>
+        </pre>
+
+        <pre>
+            <code>
+                //接口适配器模式
+                定义一个抽象类实现接口，将接口中的方法选择性实现。
+            </code>
+        </pre>
+    </p>
+</body>
+
+</html>

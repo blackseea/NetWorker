@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <h5>
+        信任库与密钥库<br> 密钥库中储存了公钥与私钥，可以从库中导出一个证书用来储存公钥，
+        <br> 信任库就是将一个公钥证书导入进来，不包含私钥的密钥库。
+        <br> ------------------------------------------
+        <br> 个人私钥，公钥与证书
+        <br> 客户端使用它自己的私钥对数据进行加密，服务端收到数据后能够使用客户端提供的公钥进行解密，
+        <br> 服务端也能使用客户端的公钥将数据进行加密后，传输给客户端，客户端就使用自己的私钥对数据进行解密。
+        <br> 为了防止中间人将服务端的客户端公钥替换成中间人的公钥，因此就有了CA证书中心对客户端公钥进行证明。
+        <br> CA使用它自己的私钥加密客户端公钥以及其他一些信息生成证书。
+        <br> 服务器使用CA的公钥解密证书就能确定客户端的公钥有没有被替换。
+        <br> keytool命令生成的cer证书文件就是对公钥进行认证的ca证书
+
+        <br>
+    </h5>
+    <h1>tittle标签显示的是浏览器tab上的文本</h1>
+    <p>p标签代表的是一个什么呢？代表的是一个普通段落？\n</p>
+    <p>
+        GET / HTTP/1.1 Host: 192.168.0.125:8080
+        <br> Connection: keep-alive Upgrade-Insecure-Requests: 1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+        Accept-Encoding: gzip, deflate Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+
+    </p>
+    <p>
+        GET /index.html?Account=&Password= HTTP/1.1 Host: 192.168.0.125:8080 Connection: keep-alive Upgrade-Insecure-Requests: 1 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Accept:
+        text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9 Referer: http://192.168.0.125:8080/ Accept-Encoding: gzip, deflate Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+
+    </p>
+
+    <p>
+        GET /css/index.css HTTP/1.1 Host: 192.168.0.102:8080 Connection: keep-alive User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36 Accept: text/css,*/*;q=0.1 Referer: http://192.168.0.102:8080/
+        Accept-Encoding: gzip, deflate Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6 --------------------------- RequestHeader{Connection='keep-alive ', Content_Type='null', Content_Encoding='null', Content_Language='null', Content_Length='null',
+        Content_Location='null', Content_Range='null', Upgrade_Insecure_Requests='1 ', Referer='http://192.168.0.102:8080/ ', Host='192.168.0.102:8080 ', Accept_Encoding='gzip, deflate ', Accept='text/css,*/*;q=0.1 ', Accept_Charset='null', Accept_Language='zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+        '}
+
+    </p>
+
+    <p>函数式编程，我感觉这样写虽然降低了代码的可读性。</br>但是函数式编程这个概念的核心思想就是：只追求代码的执行思想，不追求代码是嵌套在哪里。 换句话说就是：我的目标只是思考目的如何通过代码实现，而不是思考目的实现代码是套在哪个方法里的。
+    </p>
+    <p>如：new Thread(() -> System.out::println);这段代码就能很好的解释上面一句话的意思。<br> Thread的参数中只写了我们的实现代码，而不去关注这段代码是套在哪个方法中的。
+    </p>
+</body>
+
+</html>

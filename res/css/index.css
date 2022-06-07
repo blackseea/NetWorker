@@ -1,0 +1,39 @@
+body {}
+
+.index_nav {
+    padding: 1em;
+    height: auto;
+    width: 100%;
+    background-color: rgb(81, 109, 212);
+}
+
+.index_nav a {
+    padding: 1em;
+    align-items: baseline;
+    color: aliceblue;
+}
+
+.index_nav a:hover {
+    background-color: red;
+}
+
+
+/* .index_nav_end_a {
+    position: absolute;
+    left: 100;
+} */
+
+.index_ul {
+    width: 12.5%;
+    color: aliceblue;
+    background-color: blue;
+}
+
+.index_ul a {
+    color: aliceblue;
+}
+
+
+/* .index_border {
+    border-style: outset;
+} */

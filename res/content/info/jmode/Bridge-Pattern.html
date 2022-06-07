@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>桥接模式</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <h1>桥接模式</h1>
+    <p>
+
+    </p>
+    <pre>
+        <code>
+            public abstract class Phone{
+                protected Brand brand;
+                protected void call(){
+                    brand.call();
+                }
+            }
+
+            public class FoldePhone extends Phone{
+                public FoldePhone(Brand brand){
+                    super(brand);
+                }
+
+                @Override
+                protected void call(){
+                    brand.call();
+                }
+            }
+
+            public interface Brand{
+                void call();
+            }
+            
+            public class Vivo implements Brand {
+                public void call(){
+                    //...
+                }
+            }
+
+            public class XiaoMi implements Brand {
+                public void call(){
+                    //...
+                }
+            }
+
+            main(){
+                Phone phone1 = new FoldePhone(new XiaoMi());
+            }
+        
+        </code>
+    </pre>
+    <p>
+        当需要增加功能时，只需要创建对应的类并实现对应接口方法。
+    </p>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>单一职责原则</title>
+    <style>
+        .designmode_code {
+            font-size: large;
+            background-color: antiquewhite;
+        }
+        
+        h1 span {
+            font-size: medium;
+            white-space: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>单一职责原则</h1>
+    <p>
+        简单来说，就是明确分工合作，减少判断流程。将不同的执行逻辑归纳到相应的集合中。
+        <br> 注意：单一职责同样也适用于方法。一个方法应该尽可能做好一件事情。如果一个方法处理的事情太多，其颗粒度会变得很粗，不利于重用
+        <br>依赖Java多态特性。
+        <p>比如说，我有两件事，读取事件和写入事件。如果把这两件事都在一个方法中实现，则会显得复杂。</p>
+        <span>反例</span><br>
+        <code class="designmode_code_counter_example">
+            <span>WriterAndReader.java</span><br>
+            <span> 
+                class WriterAndReader{
+                    //方法中使用if来判断需要执行那种逻辑代码，使整体代码变得复杂
+                    void WriterAndRead(boolean isWrite){
+                        if(isWrite)
+                        {
+
+                        } else {}
+                    }
+                }
+            </span>
+            <span>当然，方法层面好解决，在类、接口层面，需要进行一定的分层。</span>
+            <br>具体思路为；设计一个统一的父类，父类中一些抽象方法，这些抽象在不同的子类中实现不同的功能。
+            <br><span>Writer.java</span>
+            <br><span>Reader.java</span>
+            <br><span>Using.java</span>
+            <span>
+                class Using{
+                    void fun(WriterAndReader o)
+                    {
+                        o.read();
+                    }
+                }
+            </span>
+        </code>
+        <br>
+
+        <span>改造后</span><br>
+        <code class="designmode_code">
+            <span>WriterAndReader.java</span><br>
+            <span><pre>
+                class WriterAndReader{
+                    int read(){}
+                    void write(){}
+                }</pre> 
+            </span>
+            <br><span>Writer.java</span>
+            <br><span>Reader.java</span>
+            <br><span>Using.java</span>
+            <span><pre>
+                class Using{
+                    void fun(WriterAndReader o)
+                    {
+                        o.read();
+                    }
+                }</pre>
+            </span>
+        </code>
+    </p>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+</body>
+
+</html>

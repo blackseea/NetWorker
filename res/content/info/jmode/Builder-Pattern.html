@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>建造者模式</title>
+</head>
+
+<body>
+    <h1>建造者模式</h1>
+    <p>初学建造者模式，有种朦胧的感觉。不知道这样写的目的是什么？
+        <br>从整个过程来看，使用建造者模式只是因为我们只想要实现目的与获得结果，并不关心这个目的是如何实现的，这个结果是怎么来的。
+        <br>实现结果的过程这部分内容应该是关于数据传入，初始化之类的操作。
+        <br>建造者模式有四个方面：产品、抽象建造者、具体建造者、指挥者。
+        <br>抽象建造者是为了降低以后项目的维护的难度，具体建造者就是负责具体功能的实施。
+        <br>冒出一个指挥者，猜测应该是为了遵守单一职责原则。
+        <br>
+        <br>下面贴一下一类建造者模式的代码
+        <pre><code>
+            /**
+            * Builder.java
+            *  建造者
+            */
+           abstract class Builder {
+               //地基
+               abstract void bulidA();
+               //钢筋工程
+               abstract void bulidB();
+               //铺电线
+               abstract void bulidC();
+               //粉刷
+               abstract void bulidD();
+               //完工-获取产品
+               abstract Product getProduct();
+           }
+            </code></pre>
+
+        <pre><code>
+                /**
+                * Product.java
+                *  产品（房子）
+                */
+               public class Product {
+                   private String buildA;
+                   private String buildB;
+                   private String buildC;
+                   private String buildD;
+                   public String getBuildA() {
+                       return buildA;
+                   }
+                   public void setBuildA(String buildA) {
+                       this.buildA = buildA;
+                   }
+                   public String getBuildB() {
+                       return buildB;
+                   }
+                   public void setBuildB(String buildB) {
+                       this.buildB = buildB;
+                   }
+                   public String getBuildC() {
+                       return buildC;
+                   }
+                   public void setBuildC(String buildC) {
+                       this.buildC = buildC;
+                   }
+                   public String getBuildD() {
+                       return buildD;
+                   }
+                   public void setBuildD(String buildD) {
+                       this.buildD = buildD;
+                   }
+                   @Override
+                       public String toString() {
+                           return buildA+"\n"+buildB+"\n"+buildC+"\n"+buildD+"\n"+"房子验收完成";
+                       }
+               }                
+            </code></pre>
+
+        <pre><code>
+                /**
+                * ConcreteBuilder.java
+                *  具体建造者(工人)
+                */
+               public class ConcreteBuilder extends Builder{
+                   private Product product;
+                   public ConcreteBuilder() {
+                       product = new Product();
+                   }
+                   @Override
+                   void bulidA() {
+                       product.setBuildA("地基");
+                   }
+                   @Override
+                   void bulidB() {
+                       product.setBuildB("钢筋工程");
+                   }
+                   @Override
+                   void bulidC() {
+                       product.setBuildC("铺电线");
+                   }
+                   @Override
+                   void bulidD() {
+                       product.setBuildD("粉刷");
+                   }
+                   @Override
+                   Product getProduct() {
+                       return product;
+                   }
+               }                
+            </code></pre>
+
+        <pre><code>
+                /**
+                * Director.java
+                *  指挥者
+                */
+               public class Director {
+                   //指挥工人按顺序造房
+                   public Product create(Builder builder) {
+                       builder.bulidA();
+                       builder.bulidB();
+                       builder.bulidC();
+                       builder.bulidD();
+                       return builder.getProduct();
+                   }
+               }                
+        </code></pre> 和StirngBuilder对比一下，无法发现StringBuilder是建造者的原因。
+    </p>
+</body>
+
+</html>

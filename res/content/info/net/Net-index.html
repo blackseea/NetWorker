@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Net</title>
+    <style>
+        .index_container_net {
+            display: grid;
+            /* grid-template-columns: 60% 40%; */
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 2;
+            grid-gap: 1rem;
+        }
+        
+        .index_container_net div {
+            background-color: gray;
+        }
+        /* 定位奇数位的标签  */
+        
+        .index_container_net div:nth-child(odd) {
+            background-color: blanchedalmond;
+        }
+        
+        .index_container_net a {
+            color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="index_container_net">网络结构<br>
+        <p>
+            <div><a href="./OSIModule.html">OSI七层模型</a></div>
+            <div><a href="./IPAddress.html">IP地址划分</a></div>
+            <div><a href="./MACAddress.html">MAC地址原理</a></div>
+            <div><a href="./HttpsLink.html">Https连接原理</a></div>
+            <div><a href="./NetJeck.html">网页劫持</a></div>
+            <div><a href="">查询网站漏洞的方式</a></div>
+        </p>
+
+    </div>
+</body>
+
+</html>

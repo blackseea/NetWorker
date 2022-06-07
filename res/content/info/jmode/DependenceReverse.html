@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>依赖倒转原则</head>
+
+<body>
+    <h1>依赖倒转原则</h1>
+    <p>当我们设计好一系列的逻辑代码后，如果需要增加功能，就需要在对应的地方增加相应的逻辑代码。</p>
+    <p>如：</p>
+    <pre><code>
+    class Email {
+        public String getInfo() {
+            return &#34;电子邮件信息&#34;;
+        }
+    }
+    
+    class Person {
+        public void receive(Email email) {
+            System.out.println(email.getInfo());
+        }
+    }
+    
+    public static void main(String[] args) {
+        Person person &#61; new Person();
+        person.receive(new Email());
+    }
+    </code></pre>
+    <p>
+        如以上代码，当我们获取信息的对象是微信，短信等等，则需要增加类，同时Person也要增加相应的接收方法。我们可以利用多态性质使代码变得简单一些。
+    </p>
+
+    <pre>
+        public interface IReceiver {
+            public String getInfo();
+        }
+        
+        class Email implements IReceiver {
+        
+            &#64;Override
+            public String getInfo() {
+                return &#34;电子邮件接收信息&#34;;
+            }
+        }
+        
+        class WeiXin implements IReceiver {
+        
+            &#64;Override
+            public String getInfo() {
+                return &#34;微信接收信息&#34;;
+            }
+        }
+        
+        class Person {
+            public void receiver(IReceiver receiver) {
+                System.out.println(receiver.getInfo());
+            }
+        }
+        
+        public static void main(String[] args) {
+            Person person &#61; new Person();
+            person.receiver(new Email());
+            person.receiver(new WeiXin());
+        }        
+    </pre>
+    <p>
+        使用继承或者实现性质的情况：当我们需要实现的功能与原有功能相似的时候，就可以使用两性质。
+        <br>
+    </p>
+</body>
+
+</html>
